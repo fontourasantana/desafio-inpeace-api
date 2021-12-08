@@ -16,3 +16,14 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'usuario'], function($router) {
+    $router->group(['prefix' => '{id:[\d]+}'], function($router) {
+        $router->get('/', 'UsersController@get');
+        $router->put('/', 'UsersController@update');
+        $router->delete('/', 'UsersController@delete');
+    });
+
+    $router->get('/', 'UsersController@index');
+    $router->post('/', 'UsersController@store');
+});
