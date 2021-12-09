@@ -17,7 +17,7 @@ cp .env.example .env
 ```bash
 docker-compose up -d
 ```
-**Obs:** Para funcionamento da aplicação é necessário rodar as migrations na primeira inicialização. Para isso execute o comando:
+**Obs:** Para funcionamento da aplicação é necessário rodar as migrations na primeira inicialização. Para isso com os containers rodando, execute o comando:
 ```bash
 docker-compose exec api php artisan migrate
 ```
