@@ -12,7 +12,8 @@ class UserServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('App\Contracts\Repositories\UserRepository', 'App\Repositories\UserRepository');
-        $this->app->bind('App\Contracts\Services\UserService', 'App\Services\UserService');
+        $this->app->singleton('App\Contracts\Repositories\UserRepository', 'App\Repositories\UserRepository');
+        $this->app->singleton('App\Contracts\Services\UserService', 'App\Services\UserService');
+        $this->app->singleton('App\Contracts\Factories\UserFactory', 'App\Factories\UserFactory');
     }
 }
