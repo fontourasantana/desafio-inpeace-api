@@ -28,7 +28,7 @@ class UserService implements IUserService
     /**
      * Retorna todos usuários cadastrados no repositório
      *
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
     public function getAll()
     {

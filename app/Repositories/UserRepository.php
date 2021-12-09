@@ -32,7 +32,7 @@ class UserRepository implements IUserRepository
     /**
      * Retorna todos usuários cadastrados no banco de dados
      *
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
     public function getAll()
     {
