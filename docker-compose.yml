@@ -1,0 +1,51 @@
+version: '3'
+services:
+    webserver:
+        container_name: webserver
+        image: nginx:alpine
+        ports:
+            - 80:80
+        volumes:
+            - .:/var/www
+            - .docker/webserver/nginx.conf:/etc/nginx/nginx.conf
+            - .docker/webserver/sites/:/etc/nginx/conf.d
+        networks:
+            - app-network
+        depends_on:
+          - api
+          - phpmyadmin
+    api:
+      container_name: api
+      build:
+        context: .
+        args:
+          GID: ${GID:-1000}
+      networks:
+        - app-network
+      volumes:
+        - .:/var/www
+    mysql:
+        container_name: mysql
+        image: mysql:8.0
+        volumes:
+            - "mysqlvolume:/var/lib/mysql"
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+        networks:
+          - app-network
+    phpmyadmin:
+        container_name: phpmyadmin
+        image: phpmyadmin/phpmyadmin:5.1
+        environment:
+            PMA_HOST: '${DB_HOST}'
+            PMA_USER: '${DB_USERNAME}'
+            PMA_PASSWORD: '${DB_PASSWORD}'
+        networks:
+          - app-network
+        depends_on:
+          - mysql
+networks:
+  app-network:
+volumes:
+  mysqlvolume:
