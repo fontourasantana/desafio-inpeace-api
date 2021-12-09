@@ -11,6 +11,7 @@ use App\Validations\Street;
 use App\Validations\City;
 use App\Validations\State;
 use JsonSerializable;
+use DateTime;
 
 class User implements JsonSerializable
 {
@@ -60,12 +61,12 @@ class User implements JsonSerializable
     private $state;
 
     /**
-     * @var int
+     * @var DateTime
      */
     private $createdAt;
 
     /**
-     * @var int
+     * @var DateTime
      */
     private $updatedAt;
 
@@ -214,7 +215,7 @@ class User implements JsonSerializable
     }
 
     /**
-     * @return int
+     * @return DateTime
      */
     public function getCreatedAt()
     {
@@ -222,7 +223,7 @@ class User implements JsonSerializable
     }
 
     /**
-     * @param int $createdAt
+     * @param DateTime $createdAt
      */
     public function setCreatedAt($createdAt)
     {
@@ -230,7 +231,7 @@ class User implements JsonSerializable
     }
 
     /**
-     * @return int
+     * @return DateTime
      */
     public function getUpdatedAt()
     {
@@ -238,7 +239,7 @@ class User implements JsonSerializable
     }
 
     /**
-     * @param int $updatedAt
+     * @param DateTime $updatedAt
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -246,6 +247,8 @@ class User implements JsonSerializable
     }
 
     /**
+     * Retorna instância de validação da entidade
+     *
      * @return Validator
      */
     public function getValidator()
@@ -254,6 +257,8 @@ class User implements JsonSerializable
     }
 
     /**
+     * Retorna todos atributos da entidade
+     *
      * @return array
      */
     private function getAttributes()
@@ -262,6 +267,8 @@ class User implements JsonSerializable
     }
 
     /**
+     * Retorna todas regras de validação da entidade
+     *
      * @return array
      */
     private function getValidateRules()
@@ -278,6 +285,11 @@ class User implements JsonSerializable
         ];
     }
 
+    /**
+     * Retorna todos atributos da entidade para serialização
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         return $this->getAttributes();
