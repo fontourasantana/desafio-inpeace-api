@@ -19,9 +19,9 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'usuario'], function($router) {
     $router->group(['prefix' => '{id:[\d]+}'], function($router) {
-        $router->get('/', 'UsersController@get');
+        $router->get('/', 'UsersController@show');
         $router->put('/', 'UsersController@update');
-        $router->delete('/', 'UsersController@delete');
+        $router->delete('/', 'UsersController@destroy');
     });
 
     $router->get('/', 'UsersController@index');
