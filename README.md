@@ -33,7 +33,7 @@ docker-compose exec api php artisan migrate
 |:---:|:---:|:---:|
 |    Versão do Lumen     | localhost |**GET**|
 |    Listar usuários     | localhost/usuarios |**GET**|
+|    Salvar usuário     | localhost/usuarios |**POST**|
 |    Ver usuário     | localhost/usuarios/{id} |**GET**|
-|    Salvar usuário     | localhost/usuarios/{id} |**POST**|
 |    Atualizar usuário     | localhost/usuarios/{id} |**PUT**|
 |    Deletar usuário     | localhost/usuarios/{id} |**DELETE**|
