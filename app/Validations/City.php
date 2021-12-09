@@ -18,7 +18,7 @@ class City extends Validation
 
     public function validate($data)
     {
-        return v::alpha('áàãâÁÀÃÂéèêÉÈÊíìîÍÌÎóòõôÓÒÕÔúùûÚÙÛçÇ')->length(1, 100, true)->validate($data);
+        return v::alpha(' áàãâÁÀÃÂéèêÉÈÊíìîÍÌÎóòõôÓÒÕÔúùûÚÙÛçÇ')->length(1, 100, true)->validate($data);
     }
 
     public function getErrorMessage()

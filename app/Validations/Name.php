@@ -18,7 +18,7 @@ class Name extends Validation
 
     public function validate($data)
     {
-        return v::alpha('áàãâÁÀÃÂéèêÉÈÊíìîÍÌÎóòõôÓÒÕÔúùûÚÙÛçÇ')->length(1, 60)->validate($data);
+        return v::alpha(' áàãâÁÀÃÂéèêÉÈÊíìîÍÌÎóòõôÓÒÕÔúùûÚÙÛçÇ')->length(1, 60)->validate($data);
     }
 
     public function getErrorMessage()
