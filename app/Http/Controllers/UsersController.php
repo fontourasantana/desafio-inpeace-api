@@ -7,16 +7,36 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    /**
+     * Implementação do UserService
+     *
+     * @var \App\Contracts\Services\UserService
+     */
     private $service;
 
+    /**
+     * Implementação da UserFactory
+     *
+     * @var \App\Contracts\Factories\UserFactory
+     */
     private $entityFactory;
 
+    /**
+     * @param \App\Contracts\Services\UserService $service
+     * @param \App\Contracts\Factories\UserFactory $entityFactory
+     * @return void
+     */
     public function __construct(UserService $service, UserFactory $entityFactory)
     {
         $this->service = $service;
         $this->entityFactory = $entityFactory;
     }
 
+    /**
+     * Retorna todos usuários do sistema
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $users = $this->service->getAll();
@@ -27,6 +47,12 @@ class UsersController extends Controller
             ->send();
     }
 
+    /**
+     * Retorna usuário do sistema pelo id
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function show(int $id)
     {
         $user = $this->service->getById($id);
@@ -37,6 +63,12 @@ class UsersController extends Controller
             ->send();
     }
 
+    /**
+     * Salva usuário no sistema
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $user = $this->entityFactory->makeFromRequest($request);
@@ -48,7 +80,14 @@ class UsersController extends Controller
             ->send();
     }
 
-    public function update(Request $request, int $id)
+    /**
+     * Atualiza usuário no sistema
+     *
+     * @param int $id
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(int $id, Request $request)
     {
         $dto = $request->only(['nome', 'cpf', 'dataNascimento', 'email', 'telefone', 'logradouro', 'cidade', 'estado']);
         $user = $this->service->getById($id);
@@ -66,6 +105,12 @@ class UsersController extends Controller
             ->send();
     }
 
+    /**
+     * Deleta usuário no sistema
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(int $id)
     {
         $user = $this->service->getById($id);
