@@ -13,6 +13,8 @@ abstract class Rule
      *
      * @param  string  $key
      * @return void
+     *
+     * @throws \InvalidArgumentException
      */
     protected function __construct($key)
     {
