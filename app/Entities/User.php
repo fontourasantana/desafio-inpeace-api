@@ -261,7 +261,7 @@ class User implements JsonSerializable
      *
      * @return array
      */
-    private function getAttributes()
+    public function getAttributes()
     {
         return \get_object_vars($this);
     }
