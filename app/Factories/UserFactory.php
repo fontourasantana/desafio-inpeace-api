@@ -8,7 +8,7 @@ use App\Entities\User;
 class UserFactory implements IUserFactory
 {
     /**
-     * Cria entidade usuário pela request da api
+     * Cria entidade usuário por dados da request da api
      *
      * @param \Illuminate\Http\Request $request
      * @return \App\Entities\User
@@ -33,7 +33,7 @@ class UserFactory implements IUserFactory
     }
 
     /**
-     * Cria entidade usuário por lista de atributos
+     * Cria entidade usuário por lista de atributos do banco de dados
      *
      * @param array $attributes
      * @return \App\Entities\User
