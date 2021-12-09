@@ -17,8 +17,8 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->group(['prefix' => 'usuario'], function($router) {
-    $router->group(['prefix' => '{id:[\d]+}'], function($router) {
+$router->group(['prefix' => 'usuarios'], function ($router) {
+    $router->group(['prefix' => '{id:[\d]+}'], function ($router) {
         $router->get('/', 'UsersController@show');
         $router->put('/', 'UsersController@update');
         $router->delete('/', 'UsersController@destroy');
