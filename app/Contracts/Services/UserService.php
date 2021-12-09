@@ -36,11 +36,12 @@ interface UserService
      * Atualiza usuário no repositório
      *
      * @param \App\Entities\User $user
+     * @param \App\Entities\User $dto
      * @return \App\Entities\User
      *
      * @throws \App\Exceptions\EntityValidationException
      */
-    public function update(User $user);
+    public function update(User $user, User $dto);
 
     /**
      * Deleta usuário no repositório

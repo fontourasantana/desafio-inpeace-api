@@ -77,12 +77,15 @@ class UserService implements IUserService
      * Atualiza usuário no repositório
      *
      * @param \App\Entities\User $user
+     * @param \App\Entities\User $dto
      * @return \App\Entities\User
      *
      * @throws \App\Exceptions\EntityValidationException
      */
-    public function update(User $user)
+    public function update(User $user, User $dto)
     {
+        $user = $this->prepareUpdate($user, $dto);
+
         $validator = $user->getValidator();
 
         if (!$validator->validate()) {
@@ -90,6 +93,26 @@ class UserService implements IUserService
         }
 
         return $this->repository->update($user);
+    }
+
+    /**
+     * Atualiza do usuário apenas os dados permitidos
+     *
+     * @param \App\Entities\User $user
+     * @param \App\Entities\User $dto
+     * @return \App\Entities\User
+     */
+    private function prepareUpdate(User $user, User $dto)
+    {
+        // $user->setName($dto->getName());
+        $user->setCpf($dto->getCpf());
+        $user->setBithDate($dto->getBithDate());
+        $user->setEmail($dto->getEmail());
+        $user->setTelephone($dto->getTelephone());
+        $user->setStreet($dto->getStreet());
+        $user->setCity($dto->getCity());
+        $user->setState($dto->getState());
+        return $user;
     }
 
     /**

@@ -108,8 +108,8 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $user = $this->entityFactory->makeFromRequest($request);
-        $user = $this->service->save($user);
+        $dto = $this->entityFactory->makeFromRequest($request);
+        $user = $this->service->save($dto);
         $user = $this->parser($user);
 
         return app('api.response')
@@ -127,15 +127,9 @@ class UsersController extends Controller
      */
     public function update(int $id, Request $request)
     {
-        $dto = $request->only(['nome', 'cpf', 'dataNascimento', 'email', 'telefone', 'logradouro', 'cidade', 'estado']);
+        $dto = $this->entityFactory->makeFromRequest($request);
         $user = $this->service->getById($id);
-        $attributes = array_merge(
-            $dto,
-            ['id' => $user->getId(), 'created_at' => $user->getCreatedAt(), 'updated_at' => $user->getUpdatedAt()]
-        );
-
-        $user = $this->entityFactory->makeFromAttributes($attributes);
-        $user = $this->service->update($user);
+        $user = $this->service->update($user, $dto);
         $user = $this->parser($user);
 
         return app('api.response')
