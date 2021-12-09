@@ -3,7 +3,7 @@ namespace App\Validations;
 
 use Respect\Validation\Validator as v;
 
-class BirthDate extends Validation
+class BirthDate extends Rule
 {
     public function __construct($key = '')
     {

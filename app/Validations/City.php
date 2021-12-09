@@ -3,7 +3,7 @@ namespace App\Validations;
 
 use Respect\Validation\Validator as v;
 
-class City extends Validation
+class City extends Rule
 {
     public function __construct($key = '')
     {

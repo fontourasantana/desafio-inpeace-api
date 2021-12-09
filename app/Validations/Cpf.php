@@ -3,7 +3,7 @@ namespace App\Validations;
 
 use Respect\Validation\Validator as v;
 
-class Cpf extends Validation
+class Cpf extends Rule
 {
     public function __construct($key = '')
     {

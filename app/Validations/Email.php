@@ -3,7 +3,7 @@ namespace App\Validations;
 
 use Respect\Validation\Validator as v;
 
-class Email extends Validation
+class Email extends Rule
 {
     public function __construct($key = '')
     {
