@@ -9,7 +9,7 @@ class UserFactory implements IUserFactory
 {
     /**
      * @param Request $request
-     * @return User
+     * @return \App\Entities\User
      */
     public function makeFromRequest(Request $request)
     {
@@ -30,8 +30,8 @@ class UserFactory implements IUserFactory
     }
 
     /**
-     * @param Array $attributes
-     * @return User
+     * @param array $attributes
+     * @return \App\Entities\User
      */
     public function makeFromAttributes(array $attributes)
     {
