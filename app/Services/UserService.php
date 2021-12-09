@@ -9,18 +9,40 @@ use App\Exceptions\EntityValidationException;
 
 class UserService implements IUserService
 {
+    /**
+     * Implementação da UserRepository
+     *
+     * @var \App\Contracts\Repositories\UserRepository
+     */
     private $repository;
 
+    /**
+     * @param \App\Contracts\Repositories\UserRepository $repository
+     * @return void
+     */
     public function __construct(UserRepository $repository)
     {
         $this->repository = $repository;
     }
 
+    /**
+     * Retorna todos usuários cadastrados no repositório
+     *
+     * @return array
+     */
     public function getAll()
     {
         return $this->repository->getAll();
     }
 
+    /**
+     * Retorna usuário pelo id no repositório
+     *
+     * @param int $id
+     * @return \App\Entities\User|null
+     *
+     * @throws \App\Exceptions\EntityNotFoundException
+     */
     public function getById(int $id)
     {
         $user = $this->repository->getById($id);
@@ -32,6 +54,14 @@ class UserService implements IUserService
         return $user;
     }
 
+    /**
+     * Salva usuário no repositório
+     *
+     * @param \App\Entities\User $user
+     * @return \App\Entities\User
+     *
+     * @throws \App\Exceptions\EntityValidationException
+     */
     public function save(User $user)
     {
         $validator = $user->getValidator();
@@ -43,6 +73,14 @@ class UserService implements IUserService
         return $this->repository->save($user);
     }
 
+    /**
+     * Atualiza usuário no repositório
+     *
+     * @param \App\Entities\User $user
+     * @return \App\Entities\User
+     *
+     * @throws \App\Exceptions\EntityValidationException
+     */
     public function update(User $user)
     {
         $validator = $user->getValidator();
@@ -54,8 +92,20 @@ class UserService implements IUserService
         return $this->repository->update($user);
     }
 
+    /**
+     * Deleta usuário no repositório
+     *
+     * @param \App\Entities\User $user
+     * @return void
+     *
+     * @throws \InvalidArgumentException
+     */
     public function delete(User $user)
     {
-        $this->repository->delete($user);
+        $deleted = $this->repository->delete($user);
+
+        if (!$deleted) {
+            throw new \InvalidArgumentException('Não foi possível deletar usuário informado');
+        }
     }
 }
