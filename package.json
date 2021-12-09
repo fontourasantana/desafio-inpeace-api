@@ -1,0 +1,28 @@
+{
+    "name": "desafio-inpeace-api",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "prepare": "husky install"
+    },
+    "lint-staged": {
+        "**/*.php": [
+            "prettier --write",
+            "php ./vendor/bin/php-cs-fixer fix --config .php_cs --allow-risky=yes"
+        ]
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^15.0.0",
+        "@commitlint/config-conventional": "^15.0.0",
+        "commitizen": "^4.2.4",
+        "cz-conventional-changelog": "^3.3.0",
+        "husky": "^7.0.4",
+        "lint-staged": "^12.0.3",
+        "prettier": "^2.5.1"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    }
+}
