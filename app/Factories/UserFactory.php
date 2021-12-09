@@ -1,16 +1,17 @@
 <?php
 namespace App\Factories;
 
+use App\Contracts\Factories\UserFactory as IUserFactory;
 use Illuminate\Http\Request;
 use App\Entities\User;
 
-class UserFactory
+class UserFactory implements IUserFactory
 {
     /**
      * @param Request $request
      * @return User
      */
-    public static function makeEntityFromRequest(Request $request)
+    public function makeFromRequest(Request $request)
     {
         $data = $request->only(['nome', 'cpf', 'dataNascimento', 'email', 'telefone', 'logradouro', 'cidade', 'estado']);
 
@@ -32,7 +33,7 @@ class UserFactory
      * @param Array $attributes
      * @return User
      */
-    public static function makeEntityFromAttributes(array $attributes)
+    public function makeFromAttributes(array $attributes)
     {
         $entity = new User;
 
