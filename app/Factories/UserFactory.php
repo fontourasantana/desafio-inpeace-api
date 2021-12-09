@@ -16,6 +16,7 @@ class UserFactory implements IUserFactory
     public function makeFromRequest(Request $request)
     {
         $data = $request->only(['nome', 'cpf', 'dataNascimento', 'email', 'telefone', 'logradouro', 'cidade', 'estado']);
+        $data = array_map('trim', $data);
 
         $entity = new User;
 
