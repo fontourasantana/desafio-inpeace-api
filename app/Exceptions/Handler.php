@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Exceptions;
 
 use Illuminate\Auth\Access\AuthorizationException;
@@ -21,6 +20,23 @@ class Handler extends ExceptionHandler
         HttpException::class,
         ModelNotFoundException::class,
         ValidationException::class,
+    ];
+
+    /**
+     *
+     * @var array|array[]
+     */
+    protected array $exceptionMap = [
+        EntityNotFoundException::class => [
+            'code' => 404,
+            'message' => 'Não foi possível encontrar o que você estava procurando',
+            'adaptMessage' => true,
+        ],
+        EntityValidationException::class => [
+            'code' => 422,
+            'message' => 'Aconteceu algum problema ao validar os dados informados',
+            'adaptMessage' => true,
+        ],
     ];
 
     /**
@@ -49,6 +65,44 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($this->isMappedException($exception)) {
+            $response = $this->formatException($exception);
+            return response()->json(['status' => 'error', 'message' => $response['message']], $response['code']);
+        }
+
         return parent::render($request, $exception);
+    }
+
+    /**
+     *
+     * @param \Throwable $exception
+     *
+     * @return bool
+     */
+    protected function isMappedException(\Throwable $exception): bool
+    {
+        $exceptionClass = get_class($exception);
+        return isset($this->exceptionMap[$exceptionClass]);
+    }
+
+    /**
+     *
+     * @param \Throwable $exception
+     *
+     * @return array
+     */
+    protected function formatException(\Throwable $exception): array
+    {
+        $exceptionClass = get_class($exception);
+        $definition = $this->exceptionMap[$exceptionClass];
+
+        if (!empty($definition['adaptMessage'])) {
+            $definition['message'] = $exception->getMessage() ?? $definition['message'];
+        }
+
+        return [
+            'code' => $definition['code'] ?? 500,
+            'message' => $definition['message'],
+        ];
     }
 }
