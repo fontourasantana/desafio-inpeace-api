@@ -8,7 +8,9 @@ use App\Entities\User;
 class UserFactory implements IUserFactory
 {
     /**
-     * @param Request $request
+     * Cria entidade usuário pela request da api
+     *
+     * @param \Illuminate\Http\Request $request
      * @return \App\Entities\User
      */
     public function makeFromRequest(Request $request)
@@ -30,6 +32,8 @@ class UserFactory implements IUserFactory
     }
 
     /**
+     * Cria entidade usuário por lista de atributos
+     *
      * @param array $attributes
      * @return \App\Entities\User
      */
