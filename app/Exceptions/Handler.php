@@ -23,8 +23,9 @@ class Handler extends ExceptionHandler
     ];
 
     /**
+     * Lista de exceções mapeadas para tratamento de resposta na api
      *
-     * @var array|array[]
+     * @var array
      */
     protected array $exceptionMap = [
         EntityNotFoundException::class => [
@@ -67,16 +68,16 @@ class Handler extends ExceptionHandler
     {
         if ($this->isMappedException($exception)) {
             $response = $this->formatException($exception);
-            return response()->json(['status' => 'error', 'message' => $response['message']], $response['code']);
+            return app('api.response')->error($response['message'], $response['code'])->send();
         }
 
         return parent::render($request, $exception);
     }
 
     /**
+     * Retorna se a exceção está mapeada
      *
      * @param \Throwable $exception
-     *
      * @return bool
      */
     protected function isMappedException(\Throwable $exception): bool
@@ -86,9 +87,9 @@ class Handler extends ExceptionHandler
     }
 
     /**
+     * Retorna dados necessários para resposta da api mapeada
      *
      * @param \Throwable $exception
-     *
      * @return array
      */
     protected function formatException(\Throwable $exception): array
