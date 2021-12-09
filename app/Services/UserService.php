@@ -104,7 +104,7 @@ class UserService implements IUserService
      */
     private function prepareUpdate(User $user, User $dto)
     {
-        // $user->setName($dto->getName());
+        $user->setName($dto->getName());
         $user->setCpf($dto->getCpf());
         $user->setBithDate($dto->getBithDate());
         $user->setEmail($dto->getEmail());
