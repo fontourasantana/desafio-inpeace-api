@@ -2,16 +2,19 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Services\UserService;
-use App\Factories\UserFactory;
+use App\Contracts\Factories\UserFactory;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
     private $service;
 
-    public function __construct(UserService $service)
+    private $entityFactory;
+
+    public function __construct(UserService $service, UserFactory $entityFactory)
     {
         $this->service = $service;
+        $this->entityFactory = $entityFactory;
     }
 
     public function index()
@@ -36,7 +39,7 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
-        $user = UserFactory::makeEntityFromRequest($request);
+        $user = $this->entityFactory->makeFromRequest($request);
         $user = $this->service->save($user);
 
         return app('api.response')
@@ -54,7 +57,7 @@ class UsersController extends Controller
             ['id' => $user->getId(), 'created_at' => $user->getCreatedAt(), 'updated_at' => $user->getUpdatedAt()]
         );
 
-        $user = UserFactory::makeEntityFromAttributes($attributes);
+        $user = $this->entityFactory->makeFromAttributes($attributes);
         $user = $this->service->update($user);
 
         return app('api.response')

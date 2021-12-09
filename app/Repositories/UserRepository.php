@@ -3,23 +3,30 @@ namespace App\Repositories;
 
 use App\Models\User;
 use App\Entities\User as Entity;
-use App\Factories\UserFactory;
+use App\Contracts\Factories\UserFactory;
 use App\Contracts\Repositories\UserRepository as IUserRepository;
 
 class UserRepository implements IUserRepository
 {
     private $primaryKey = 'id';
 
+    private $entityFactory;
+
+    public function __construct(UserFactory $entityFactory)
+    {
+        $this->entityFactory = $entityFactory;
+    }
+
     public function getAll()
     {
         $users = User::all();
-        return $users->map(fn ($user) => UserFactory::makeEntityFromAttributes($user->getAttributes()));
+        return $users->map(fn ($user) => $this->entityFactory->makeFromAttributes($user->getAttributes()));
     }
 
     public function getById(int $id)
     {
         $model = User::find($id);
-        return $model ? UserFactory::makeEntityFromAttributes($model->getAttributes()) : null;
+        return $model ? $this->entityFactory->makeFromAttributes($model->getAttributes()) : null;
     }
 
     public function save(Entity $user)
