@@ -20,7 +20,7 @@ make
 ```
 **Obs:** O webserver por padrão roda na porta **80**, caso essa porta esteja sendo utilizada no sistema, basta alterar a váriavel de ambiente **WEBSERVER_PORT** no .env\
 \
-**Atenção:** Para o funcionamento adequado da API, é necessário rodar as migrations. Para isso rode o seguinte comando com o projeto em execução:
+**Atenção:** Para o funcionamento adequado da API, é necessário rodar as migrations. Para isso rode o seguinte comando com o projeto em execução completamente inicializado:
 ```bash
 make run-migrates
 ```
