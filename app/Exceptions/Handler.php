@@ -38,6 +38,11 @@ class Handler extends ExceptionHandler
             'message' => 'Aconteceu algum problema ao validar os dados informados',
             'adaptMessage' => true,
         ],
+        RequiredAttributesException::class => [
+            'code' => 422,
+            'message' => 'É necessário informar todos os campos',
+            'adaptMessage' => false,
+        ],
     ];
 
     /**
