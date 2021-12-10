@@ -14,6 +14,9 @@ up:
 run-migrates:
 	@echo "\033[1;32mRodando migrations\033[0m"
 	@docker-compose exec api php artisan migrate
+run-seeders:
+	@echo "\033[1;32mRodando seeders\033[0m"
+	@docker-compose exec api php artisan db:seed --class=UsersTableSeeder
 prepare-dev:
 	@echo "\033[1;32mInstalando dependências do projeto\033[0m"
 	@npm ci --silent
