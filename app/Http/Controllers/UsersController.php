@@ -5,6 +5,7 @@ use App\Contracts\Services\UserService;
 use App\Contracts\Factories\UserFactory;
 use App\Entities\User;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 
 class UsersController extends Controller
 {
@@ -34,40 +35,6 @@ class UsersController extends Controller
     }
 
     /**
-     * Faz parser da entidade User para o padrão esperado pelo front-end
-     *
-     * @param \App\Entities\User $user
-     * @return array
-     */
-    private function parser(User $user)
-    {
-        $keysMap = [
-            'id' => 'id',
-            'name' => 'nome',
-            'cpf' => 'cpf',
-            'birthDate' => 'dataNascimento',
-            'email' => 'email',
-            'telephone' => 'telefone',
-            'street' => 'logradouro',
-            'city' => 'cidade',
-            'state' => 'estado',
-        ];
-
-        $attributes = $user->getAttributes();
-        $parsed = [];
-
-        foreach ($attributes as $key => $value) {
-            if (!isset($keysMap[$key])) {
-                continue;
-            }
-
-            $parsed[$keysMap[$key]] = $value;
-        }
-
-        return $parsed;
-    }
-
-    /**
      * Retorna todos usuários do sistema
      *
      * @return \Illuminate\Http\Response
@@ -75,7 +42,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = $this->service->getAll();
-        $users = $users->map(fn ($user) => $this->parser($user));
+        $users = UserResource::collection($users);
 
         return app('api.response')
             ->success()
@@ -92,7 +59,7 @@ class UsersController extends Controller
     public function show(int $id)
     {
         $user = $this->service->getById($id);
-        $user = $this->parser($user);
+        $user = new UserResource($user);
 
         return app('api.response')
             ->success()
@@ -110,7 +77,7 @@ class UsersController extends Controller
     {
         $dto = $this->entityFactory->makeFromRequest($request);
         $user = $this->service->save($dto);
-        $user = $this->parser($user);
+        $user = new UserResource($user);
 
         return app('api.response')
             ->created('Usuário registrado com sucesso !')
@@ -130,7 +97,7 @@ class UsersController extends Controller
         $dto = $this->entityFactory->makeFromRequest($request);
         $user = $this->service->getById($id);
         $user = $this->service->update($user, $dto);
-        $user = $this->parser($user);
+        $user = new UserResource($user);
 
         return app('api.response')
             ->success('Usuário atualizado com sucesso !')
