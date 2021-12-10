@@ -61,12 +61,12 @@ class User implements JsonSerializable
     private $state;
 
     /**
-     * @var DateTime
+     * @var \DateTime
      */
     private $createdAt;
 
     /**
-     * @var DateTime
+     * @var \DateTime
      */
     private $updatedAt;
 
@@ -215,7 +215,7 @@ class User implements JsonSerializable
     }
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -223,7 +223,7 @@ class User implements JsonSerializable
     }
 
     /**
-     * @param DateTime $createdAt
+     * @param \DateTime $createdAt
      */
     public function setCreatedAt($createdAt)
     {
@@ -231,7 +231,7 @@ class User implements JsonSerializable
     }
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -239,7 +239,7 @@ class User implements JsonSerializable
     }
 
     /**
-     * @param DateTime $updatedAt
+     * @param \DateTime $updatedAt
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -249,7 +249,7 @@ class User implements JsonSerializable
     /**
      * Retorna instância de validação da entidade
      *
-     * @return Validator
+     * @return \App\Validations\Validator
      */
     public function getValidator()
     {
