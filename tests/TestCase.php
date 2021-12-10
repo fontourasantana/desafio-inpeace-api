@@ -11,6 +11,14 @@ abstract class TestCase extends BaseTestCase
      */
     public function createApplication()
     {
-        return require __DIR__.'/../bootstrap/app.php';
+        return require __DIR__ . '/../bootstrap/app.php';
+    }
+
+    public function getPrivateProperty($object, $property)
+    {
+        $reflectedClass = new \ReflectionClass($object);
+        $reflection = $reflectedClass->getProperty($property);
+        $reflection->setAccessible(true);
+        return $reflection->getValue($object);
     }
 }
