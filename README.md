@@ -1,22 +1,26 @@
 # Desafio InPeace - Módulo Api
 
+## Requisitos
+|Ferramenta|Versão Testada|
+|:-:|:-:|
+|[Docker Engine](https://docs.docker.com/engine/)|20.10.11|
+|[Docker Compose](https://docs.docker.com/compose/)|1.28.5|
+|[GNU Make](https://www.gnu.org/software/make/)|4.2.1|
+
 ### Primeiros passos
 - Primeiro é necessário fazer a cópia do repositório
 ```bash
 git clone https://github.com/fontourasantana/desafio-inpeace-api
 ```
-- Copiar exemplo do .env fornecido no repositório
+- Para preparar o projeto para execução, rode:
 ```bash
-cp .env.example .env
+make
 ```
 **Obs:** O webserver por padrão roda na porta 80, caso essa porta esteja sendo utilizada no sistema, basta alterar a váriavel de ambiente **WEBSERVER_PORT** no .env
-- Com o .env configurado para rodar a aplicação basta executar o seguinte comando:
+
+### Executando projeto
 ```bash
-docker-compose up -d
-```
-**Obs:** Para funcionamento da aplicação é necessário rodar as migrations na primeira inicialização. Para isso com os containers rodando, execute o comando:
-```bash
-docker-compose exec api php artisan migrate
+make up
 ```
 
 ### Rotas que o webserver fornece
@@ -30,11 +34,11 @@ docker-compose exec api php artisan migrate
 ### Rotas da API
 |Identificação|URL|METHOD|
 |:---:|:---:|:---:|
-|    Versão do Lumen     | localhost |**GET**|
-|    Listar usuários     | localhost/usuarios |**GET**|
-|    Salvar usuário     | localhost/usuarios |**POST**|
-|    Ver usuário     | localhost/usuarios/{id} |**GET**|
-|    Atualizar usuário     | localhost/usuarios/{id} |**PUT**|
-|    Deletar usuário     | localhost/usuarios/{id} |**DELETE**|
+|    Versão do Lumen     | {API_URL} |**GET**|
+|    Listar usuários     | {API_URL}/usuarios |**GET**|
+|    Salvar usuário     | {API_URL}/usuarios |**POST**|
+|    Ver usuário     | {API_URL}/usuarios/{id} |**GET**|
+|    Atualizar usuário     | {API_URL}/usuarios/{id} |**PUT**|
+|    Deletar usuário     | {API_URL}/usuarios/{id} |**DELETE**|
 
-*Rotas considerando webserver na porta 80*
+**Obs:** Considerar **{API_URL}** a rota para a URL da API fornecida pelo webserver
