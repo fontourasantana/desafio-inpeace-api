@@ -1,4 +1,6 @@
 # Desafio InPeace - Módulo Api
+Este repositório tem como objetivo fornecer a API utilizada no desafio proposto.\
+O projeto completo pode ser encontrado no repositório [Desafio Inpeace](https://github.com/fontourasantana/desafio-inpeace)
 
 ## Requisitos
 |Ferramenta|Versão Testada|
