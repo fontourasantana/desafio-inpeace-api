@@ -4,6 +4,7 @@ namespace App\Factories;
 use App\Contracts\Factories\UserFactory as IUserFactory;
 use Illuminate\Http\Request;
 use App\Entities\User;
+use DateTime;
 
 class UserFactory implements IUserFactory
 {
@@ -51,8 +52,8 @@ class UserFactory implements IUserFactory
         $entity->setStreet($attributes['logradouro']);
         $entity->setCity($attributes['cidade']);
         $entity->setState($attributes['estado']);
-        $entity->setCreatedAt($attributes['created_at']);
-        $entity->setUpdatedAt($attributes['updated_at']);
+        $entity->setCreatedAt(new DateTime($attributes['created_at']));
+        $entity->setUpdatedAt(new DateTime($attributes['updated_at']));
 
         return $entity;
     }
