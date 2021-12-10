@@ -5,15 +5,11 @@
 ```bash
 git clone https://github.com/fontourasantana/desafio-inpeace-api
 ```
-- Após copiar o repositório é necessário instalar as depedências do projeto
-```bash
-composer install --optimize-autoloader --no-dev
-```
 - Copiar exemplo do .env fornecido no repositório
 ```bash
 cp .env.example .env
 ```
-- Com as dependências instaladas e .env configurado, para rodar a aplicação basta executar o seguinte comando:
+- Com o .env configurado para rodar a aplicação basta executar o seguinte comando:
 ```bash
 docker-compose up -d
 ```
