@@ -24,6 +24,8 @@ services:
       image: desafio-inpeace-api:latest
       networks:
         - api-network
+      depends_on:
+        - mysql
     mysql:
         container_name: mysql
         image: mysql:8.0
