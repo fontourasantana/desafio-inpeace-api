@@ -11,6 +11,8 @@ interface UserFactory
      *
      * @param \Illuminate\Http\Request $request
      * @return \App\Entities\User
+     *
+     * @throws \App\Exceptions\RequiredAttributesException
      */
     public function makeFromRequest(Request $request);
 

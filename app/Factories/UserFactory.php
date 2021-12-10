@@ -2,6 +2,7 @@
 namespace App\Factories;
 
 use App\Contracts\Factories\UserFactory as IUserFactory;
+use App\Exceptions\RequiredAttributesException;
 use Illuminate\Http\Request;
 use App\Entities\User;
 use DateTime;
@@ -9,14 +10,25 @@ use DateTime;
 class UserFactory implements IUserFactory
 {
     /**
+     * @var array
+     */
+    private $requiredAttributes = ['nome', 'cpf', 'dataNascimento', 'email', 'telefone', 'logradouro', 'cidade', 'estado'];
+
+    /**
      * Cria entidade usuário por dados da request da api
      *
      * @param \Illuminate\Http\Request $request
      * @return \App\Entities\User
+     *
+     * @throws \App\Exceptions\RequiredAttributesException
      */
     public function makeFromRequest(Request $request)
     {
-        $data = $request->only(['nome', 'cpf', 'dataNascimento', 'email', 'telefone', 'logradouro', 'cidade', 'estado']);
+        if (!$request->has($this->requiredAttributes)) {
+            throw new RequiredAttributesException;
+        }
+
+        $data = $request->only($this->requiredAttributes);
         $data = array_map('trim', $data);
 
         $entity = new User;
