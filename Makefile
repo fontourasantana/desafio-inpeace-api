@@ -11,9 +11,13 @@ build-api:
 up:
 	@echo "\033[1;32mIniciando aplicação completa\033[0m"
 	@docker-compose up -d
-up-dev:
-	@echo "\033[1;32mIniciando aplicação completa (modo desenvolvimento)\033[0m"
-	@docker-compose -f docker-compose.dev.yml up -d
 run-migrates:
 	@echo "\033[1;32mRodando migrations\033[0m"
 	@docker-compose exec api php artisan migrate
+prepare-dev:
+	@echo "\033[1;32mInstalando dependências do projeto\033[0m"
+	@npm ci --silent
+	@composer install --optimize-autoloader -q
+up-dev:
+	@echo "\033[1;32mIniciando aplicação completa (modo desenvolvimento)\033[0m"
+	@docker-compose -f docker-compose.dev.yml up -d
