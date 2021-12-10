@@ -106,7 +106,7 @@ class UserService implements IUserService
     {
         $user->setName($dto->getName());
         $user->setCpf($dto->getCpf());
-        $user->setBithDate($dto->getBithDate());
+        $user->setBithDate($dto->getBirthDate());
         $user->setEmail($dto->getEmail());
         $user->setTelephone($dto->getTelephone());
         $user->setStreet($dto->getStreet());

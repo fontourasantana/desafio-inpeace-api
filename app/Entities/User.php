@@ -121,7 +121,7 @@ class User implements JsonSerializable
     /**
      * @return string
      */
-    public function getBithDate()
+    public function getBirthDate()
     {
         return $this->birthDate;
     }

@@ -63,7 +63,7 @@ class UserRepository implements IUserRepository
         $model = new User;
         $model->nome = $user->getName();
         $model->cpf = $user->getCpf();
-        $model->dataNascimento = $user->getBithDate();
+        $model->dataNascimento = $user->getBirthDate();
         $model->email = $user->getEmail();
         $model->telefone = $user->getTelephone();
         $model->logradouro = $user->getStreet();
@@ -89,7 +89,7 @@ class UserRepository implements IUserRepository
         $model = User::find($user->getId());
         $model->nome = $user->getName();
         $model->cpf = $user->getCpf();
-        $model->dataNascimento = $user->getBithDate();
+        $model->dataNascimento = $user->getBirthDate();
         $model->email = $user->getEmail();
         $model->telefone = $user->getTelephone();
         $model->logradouro = $user->getStreet();
