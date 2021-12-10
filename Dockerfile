@@ -14,8 +14,8 @@ COPY . .
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install dependencies and copy .env
-RUN composer install --optimize-autoloader --no-dev && cp .env.example .env
+# Install dependencies
+RUN composer install --optimize-autoloader --no-dev
 
 # Add user for lumen application
 RUN addgroup -g $GID -S www && adduser -S www -G www
