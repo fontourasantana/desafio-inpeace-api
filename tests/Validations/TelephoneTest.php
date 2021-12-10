@@ -9,7 +9,7 @@ class TelephoneTest extends TestCase
     /**
      * Testa se função make retorna instância desejada
      */
-    public function testShouldReturnStreetInstance()
+    public function testShouldReturnTelephoneInstance()
     {
         $instance = Instance::make('testing');
         $this->assertInstanceOf(Instance::class, $instance);
@@ -33,7 +33,7 @@ class TelephoneTest extends TestCase
     /**
      * @dataProvider telephoneProvider
      */
-    public function testStreets($data, $expected)
+    public function testTelephones($data, $expected)
     {
         $instance = Instance::make('testing');
         $result = $instance->validate($data);
