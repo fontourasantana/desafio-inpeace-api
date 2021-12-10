@@ -7,7 +7,7 @@ prepare-env:
 	@cp .env.example .env
 build-api:
 	@echo "\033[1;32mBuildando API\033[0m"
-	@docker build . -t desafio-inpeace-api --build-arg GID=$(GID)
+	@docker build . -t desafio-inpeace-api --build-arg GID=$(GID) --build-arg UID=$(UID)
 up:
 	@echo "\033[1;32mIniciando aplicação completa\033[0m"
 	@docker-compose up -d

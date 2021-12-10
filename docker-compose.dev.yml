@@ -19,6 +19,7 @@ services:
       build:
         context: .
         args:
+          UID: ${UID:-1000}
           GID: ${GID:-1000}
       image: desafio-inpeace-api:latest
       networks:

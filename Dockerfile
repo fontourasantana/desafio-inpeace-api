@@ -1,5 +1,6 @@
 FROM php:7.4-fpm-alpine
 
+ARG UID
 ARG GID
 
 RUN apk update && \
@@ -18,7 +19,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer install --optimize-autoloader --no-dev
 
 # Add user for lumen application
-RUN addgroup -g $GID -S www && adduser -S www -G www
+RUN addgroup -g $GID -S www && adduser -u $UID -S www -G www
 
 # Copy existing application directory permissions
 COPY --chown=www:www . /var/www
