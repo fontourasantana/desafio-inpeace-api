@@ -12,7 +12,7 @@ O projeto completo pode ser encontrado no repositório [Desafio Inpeace](https:/
 ### Primeiros passos
 - Primeiro é necessário fazer a cópia do repositório
 ```bash
-git clone https://github.com/fontourasantana/desafio-inpeace-api
+git clone https://github.com/fontourasantana/desafio-inpeace-api && cd desafio-inpeace-api
 ```
 - Para preparar o projeto para execução, rode:
 ```bash
