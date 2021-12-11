@@ -24,7 +24,10 @@ make
 ```bash
 make run-migrates
 ```
-
+**Opcional:** Para uma melhor experiência, caso deseje que o banco de dados seja povoado você pode rodar o comando que faz o seed no banco:
+```bash
+make run-seeders
+```
 ### Executando projeto
 ```bash
 make up
