@@ -14,6 +14,9 @@
         <testsuite name="Services">
             <directory suffix="Test.php">./tests/Services</directory>
         </testsuite>
+        <testsuite name="Validations">
+            <directory suffix="Test.php">./tests/Validations</directory>
+        </testsuite>
     </testsuites>
     <php>
         <env name="APP_ENV" value="testing"/>
