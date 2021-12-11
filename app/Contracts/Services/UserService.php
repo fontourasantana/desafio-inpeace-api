@@ -16,7 +16,7 @@ interface UserService
      * Retorna usuário pelo id no repositório
      *
      * @param int $id
-     * @return \App\Entities\User|null
+     * @return \App\Entities\User
      *
      * @throws \App\Exceptions\EntityNotFoundException
      */
