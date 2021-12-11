@@ -24,13 +24,25 @@ make
 ```bash
 make run-migrates
 ```
-**Opcional:** Para uma melhor experiência, caso deseje que o banco de dados seja povoado você pode rodar o comando que faz o seed no banco:
+### Comandos opcionais
+- Para uma melhor experiência, caso deseje que o banco de dados seja povoado você pode rodar o comando que faz o seed no banco:
 ```bash
 make run-seeders
 ```
+- Para rodar os testes da API:
+```bash
+make run-tests
+```
+**Obs:** Para rodar os testes é necessário estar com a imagem da api buildada
+
 ### Executando projeto
+- Para iniciar a execução no projeto rode o comando:
 ```bash
 make up
+```
+- Para parar a execução no projeto rode o comando:
+```bash
+make down
 ```
 
 ### Rotas que o webserver fornece
