@@ -18,11 +18,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install dependencies
 RUN composer install --optimize-autoloader -q
 
-# Add user for lumen application
-RUN addgroup -g $GID -S www && adduser -u $UID -S www -G www
-
-# Copy existing application directory permissions
-COPY --chown=www:www . /var/www
+# Add user for lumen application and add directory permissions
+RUN addgroup -g $GID www && \
+    adduser -u $UID -G www -D www && \
+    chown -R www:www .
 
 # Change current user to www
 USER www
