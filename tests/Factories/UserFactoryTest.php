@@ -28,7 +28,6 @@ class UserFactoryTest extends TestCase
     public function testUserFactoryReturnUserEntityFromRequest()
     {
         $requestData = [
-            'id' => 1,
             'nome' => 'teste',
             'cpf' => '16539585020',
             'dataNascimento' => '2021-12-10',

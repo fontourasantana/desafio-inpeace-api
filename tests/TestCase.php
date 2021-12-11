@@ -21,4 +21,13 @@ abstract class TestCase extends BaseTestCase
         $reflection->setAccessible(true);
         return $reflection->getValue($object);
     }
+
+    public function invokePrivateMethod(&$object, $methodName, array $parameters = [])
+    {
+        $reflection = new \ReflectionClass(get_class($object));
+        $method = $reflection->getMethod($methodName);
+        $method->setAccessible(true);
+
+        return $method->invokeArgs($object, $parameters);
+    }
 }
