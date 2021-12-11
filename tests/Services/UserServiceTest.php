@@ -118,7 +118,7 @@ class UserServiceTest extends TestCase
 
         $dto->setName('teste');
         $dto->setCpf('16539585020');
-        $dto->setBithDate('2021-12-10');
+        $dto->setBirthDate('2021-12-10');
         $dto->setEmail('teste@email.br');
         $dto->setTelephone('1234567890');
         $dto->setStreet('rua teste');

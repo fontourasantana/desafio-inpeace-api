@@ -35,7 +35,7 @@ class UserFactory implements IUserFactory
 
         $entity->setName($data['nome']);
         $entity->setCpf($data['cpf']);
-        $entity->setBithDate($data['dataNascimento']);
+        $entity->setBirthDate($data['dataNascimento']);
         $entity->setEmail($data['email']);
         $entity->setTelephone($data['telefone']);
         $entity->setStreet($data['logradouro']);
@@ -58,7 +58,7 @@ class UserFactory implements IUserFactory
         $entity->setId($attributes['id']);
         $entity->setName($attributes['nome']);
         $entity->setCpf($attributes['cpf']);
-        $entity->setBithDate($attributes['dataNascimento']);
+        $entity->setBirthDate($attributes['dataNascimento']);
         $entity->setEmail($attributes['email']);
         $entity->setTelephone($attributes['telefone']);
         $entity->setStreet($attributes['logradouro']);

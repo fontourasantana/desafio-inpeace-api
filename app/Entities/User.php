@@ -129,7 +129,7 @@ class User implements JsonSerializable
     /**
      * @param string $birthDate
      */
-    public function setBithDate($birthDate)
+    public function setBirthDate($birthDate)
     {
         $this->birthDate = $birthDate;
     }
