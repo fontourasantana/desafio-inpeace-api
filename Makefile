@@ -7,7 +7,7 @@ build-api:
 	@docker build . -t desafio-inpeace-api --build-arg GID=$(GID) --build-arg UID=$(UID)
 up:
 	@echo "\033[1;32mIniciando aplicação completa\033[0m"
-	@docker-compose up -d webserver
+	@docker-compose up -d
 down:
 	@echo "\033[1;32mParando a execução da aplicação\033[0m"
 	@docker-compose down
@@ -19,7 +19,7 @@ run-seeders:
 	@docker-compose exec api php artisan db:seed --class=UsersTableSeeder
 run-tests:
 	@echo "\033[1;32mRodando testes\033[0m"
-	@docker-compose run --rm unit-tests
+	@docker run -it --rm desafio-inpeace-api:latest php ./vendor/bin/phpunit
 prepare-dev:
 	@echo "\033[1;32mInstalando dependências do projeto\033[0m"
 	@npm ci --silent

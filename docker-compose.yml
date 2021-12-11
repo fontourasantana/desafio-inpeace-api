@@ -47,11 +47,6 @@ services:
           - api-network
         depends_on:
           - mysql
-    unit-tests:
-      image: desafio-inpeace-api:latest
-      entrypoint: php ./vendor/bin/phpunit
-      volumes:
-        - ./phpunit.xml:/phpunit.xml
 networks:
   api-network:
 volumes:
