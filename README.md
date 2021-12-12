@@ -84,3 +84,17 @@ make build-api
 |    Deletar usuário     | {API_URL}/usuarios/{id} |**DELETE**|
 
 **Obs:** Considerar **{API_URL}** a rota para a URL da API fornecida pelo webserver
+
+Exemplo de body esperado pela api:
+```json
+{
+    "nome": "nome teste",
+    "cpf": "000000000",
+    "dataNascimento": "2021-12-11",
+    "email": "email@template.br",
+    "telefone": "0000000000",
+    "logradouro": "logradouro teste",
+    "cidade": "Vitória",
+    "estado": "ES"
+}
+```
